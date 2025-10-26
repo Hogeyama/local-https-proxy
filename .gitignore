@@ -1,0 +1,6 @@
+localCA.key
+localCA.pem
+localCA.srl
+server.crt
+server.csr
+server.key
