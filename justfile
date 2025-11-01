@@ -27,9 +27,11 @@ gen-certs cn='localhost':
 serve target='' port='':
     env \
       DENO_NO_UPDATE_CHECK=1 \
-      LOCAL_HTTPS_PROXY_TARGET={{ target }} \
-      LOCAL_HTTPS_PROXY_PORT={{ port }} \
-      ./proxy.ts
+      ./proxy.ts \
+      --target {{ target }} \
+      --port {{ port }} \
+      --cert server.crt \
+      --key server.key
 
 clean:
     cat .gitignore | xargs -I {} rm -f {}

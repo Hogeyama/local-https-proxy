@@ -23,6 +23,8 @@
                     --allow-net \
                     --allow-env \
                     --allow-read \
+                    --lock ${./deno.lock} \
+                    --frozen \
                     ${./proxy.ts} "$@"
                 '').overrideAttrs (_: {
                 meta = with pkgs.lib; {
