@@ -25,7 +25,7 @@ gen-certs cn='localhost':
       -extfile <(printf "basicConstraints=CA:FALSE\nsubjectAltName=DNS:{{ cn }},IP:127.0.0.1")
 
 serve target='' port='':
-    env TARGET={{ target }} PORT={{ port }} ./proxy.ts
+    env DENO_NO_UPDATE_CHECK=1 TARGET={{ target }} PORT={{ port }} ./proxy.ts
 
 clean:
     cat .gitignore | xargs -I {} rm -f {}
