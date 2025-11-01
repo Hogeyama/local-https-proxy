@@ -27,3 +27,17 @@ The script reads `server.crt` / `server.key` from the repo root. Feel free to su
 
 ## Cleaning Up
 Run `just clean` to delete generated certificates, or remove specific files manually. Remember to revoke the CA from your trust store if you no longer need it.
+
+## Advanced Usage
+
+* Dynamic Targeting by Hostname
+  ```
+  ./proxy.ts \
+    --key  '/path/to/*.localhost.hogeyama.com.key' \
+    --cert '/path/to/*.localhost.hogeyama.com.cer' \
+    --port 8443 \
+    --host-regex '(?<port>[0-9]{4})\.localhost\.hogeyama\.com' \
+    --target 'http://localhost:{port}'
+  ```
+  * 3000.localhost.hogeyama.com:8443 → http://localhost:3000
+  * 8080.localhost.hogeyama.com:8443 → http://localhost:8080
